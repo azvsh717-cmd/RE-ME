@@ -210,20 +210,3 @@ export function ThemeToggle({
     </div>
   );
 }
-
-/** Sidebar/sozlamalar uchun kengroq ko‘rinish: sarlavha, joriy holat va tugma */
-export function ThemeSwitcher() {
-  const { resolved, mounted } = useTheme();
-  return (
-    <div className="theme-surface rounded-2xl border border-line bg-surface-soft p-3.5">
-      <div className="flex items-center justify-between gap-2 px-1 pb-2.5">
-        <span className="label">Ko‘rinish</span>
-        <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-500">
-          {resolved === 'dark' ? <Moon size={12} /> : <Sun size={12} />}
-          {mounted ? (resolved === 'dark' ? 'tungi' : 'kunduzgi') : '\u00a0'}
-        </span>
-      </div>
-      <ThemeToggle className="w-full" showLabels />
-    </div>
-  );
-}
