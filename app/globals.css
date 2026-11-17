@@ -1,3 +1,200 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
 @tailwind base; @tailwind components; @tailwind utilities;
-:root { color-scheme: light; } * { box-sizing:border-box; } body { margin:0; background:#f8f7fc; color:#252342; font-family:'DM Sans',sans-serif; } h1,h2,h3,.serif { font-family:'DM Serif Display',Georgia,serif; font-weight:400; } button { cursor:pointer; } button:disabled { cursor:not-allowed; opacity:.6 } input, textarea { outline:none; } input:focus, textarea:focus { border-color:#817bf1 !important; box-shadow:0 0 0 3px #ecebff; } .card { background:white; border:1px solid #eceaf4; border-radius:20px; box-shadow:0 6px 30px rgba(51,43,99,.035); } .btn { display:inline-flex; align-items:center; justify-content:center; gap:9px; border-radius:10px; background:#4f46e5; color:white; padding:12px 19px; font-weight:600; font-size:14px; transition:.2s; } .btn:hover { background:#4338ca; } .field { width:100%; border:1px solid #e5e3ef; border-radius:10px; padding:13px 14px; background:white; font-size:14px; } .muted { color:#9290a8; } .label { font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#9b98af; } .prose-lines { white-space:pre-wrap; overflow-wrap:anywhere; }
+
+/* ---------------------------------------------------------------
+   Dizayn tokenlari
+   Yorug‘ (light) — asosiy brend palitrasi
+   Tungi (dark)  — .dark klassi <html> ga qo‘shilganda almashadi
+   --------------------------------------------------------------- */
+:root {
+  color-scheme: light;
+
+  --surface: #f8f7fc;
+  --surface-soft: #faf9fd;
+  --surface-elevated: #fdfcff;
+  --card: #ffffff;
+
+  --line: #eceaf4;
+  --line-soft: #f0eef5;
+  --line-strong: #dedbf3;
+
+  --ink: #252342;
+  --ink-2: #6d6983;
+  --ink-3: #757184;
+  --ink-4: #827e96;
+
+  --tint: #efedff;
+  --tint-strong: #eeedff;
+  --tint-icon: #f1efff;
+  --tint-soft: #eeedfc;
+  --hero: #eae8fb;
+  --hero-2: #edebfb;
+  --track: #e9e7f3;
+
+  --glass: rgba(255, 255, 255, .7);
+  --glass-soft: rgba(255, 255, 255, .3);
+  --glass-tint: rgba(219, 214, 255, .65);
+  --overlay: rgba(39, 35, 65, .45);
+
+  --brand-solid: #4f46e5;
+  --brand-solid-hover: #4338ca;
+  --brand-50: #eef2ff;
+  --brand-100: #e0e7ff;
+  --brand-200: #c7d2fe;
+  --brand-300: #a5b4fc;
+  --brand-400: #818cf8;
+  --brand-500: #5b5ee8;
+  --brand-600: #4f46e5;
+  --brand-700: #4338ca;
+  --chart-line: #6860e9;
+  --chart-dot-stroke: #ffffff;
+  --chart-dot: #6860e9;
+
+  --focus-border: #817bf1;
+  --focus-ring: #ecebff;
+  --danger: #dc2626;
+  --warn: #b45309;
+
+  --card-shadow: 0 6px 30px rgba(51, 43, 99, .035);
+  --card-shadow-hover: 0 10px 34px rgba(51, 43, 99, .08);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --surface: #0e0d15;
+  --surface-soft: #191823;
+  --surface-elevated: #15141e;
+  --card: #1a1926;
+
+  --line: #2b2839;
+  --line-soft: #262433;
+  --line-strong: #3a3651;
+
+  --ink: #f1effa;
+  --ink-2: #b8b4cb;
+  --ink-3: #918da6;
+  --ink-4: #8b8799;
+
+  --tint: #2a2546;
+  --tint-strong: #312b55;
+  --tint-icon: #282344;
+  --tint-soft: #232038;
+  --hero: #201d33;
+  --hero-2: #1b1830;
+  --track: #2b2839;
+
+  --glass: rgba(255, 255, 255, .1);
+  --glass-soft: rgba(255, 255, 255, .05);
+  --glass-tint: rgba(120, 112, 200, .18);
+  --overlay: rgba(4, 3, 10, .7);
+
+  --brand-solid: #5b52ef;
+  --brand-solid-hover: #6a61f5;
+  --brand-50: #221f3d;
+  --brand-100: #292648;
+  --brand-200: #3d3861;
+  --brand-300: #7a73d8;
+  --brand-400: #9f98ff;
+  --brand-500: #aca6ff;
+  --brand-600: #b7b1ff;
+  --brand-700: #cbc7ff;
+  --chart-line: #918aff;
+  --chart-dot-stroke: #1a1926;
+  --chart-dot: #918aff;
+
+  --focus-border: #8f88ff;
+  --focus-ring: rgba(143, 136, 255, .22);
+  --danger: #ff9aa2;
+  --warn: #f5c069;
+
+  --card-shadow: 0 6px 30px rgba(0, 0, 0, .38);
+  --card-shadow-hover: 0 10px 36px rgba(0, 0, 0, .5);
+}
+
+* { box-sizing: border-box; }
+
+::selection { background: #dcd8ff; color: #252342; }
+.dark ::selection { background: #3b3568; color: #f1effa; }
+
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  transition: background-color .28s ease, color .28s ease;
+}
+
+h1, h2, h3, .serif { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; }
+
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: .6; }
+
+input, textarea { outline: none; }
+input::placeholder, textarea::placeholder { color: var(--ink-4); }
+input:focus, textarea:focus {
+  border-color: var(--focus-border) !important;
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+/* Tema almashganda yumshoq o‘tish */
+.card, .field, .btn, aside, header, footer, .theme-surface {
+  transition: background-color .28s ease, border-color .28s ease, color .28s ease, box-shadow .28s ease;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: var(--card-shadow);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border-radius: 10px;
+  background: var(--brand-solid);
+  color: #fff;
+  padding: 12px 19px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background-color .2s;
+}
+.btn:hover { background: var(--brand-solid-hover); }
+
+.field {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 13px 14px;
+  background: var(--card);
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.muted { color: var(--ink-3); }
+
+.label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.prose-lines { white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* Harakatni kamaytirish sozlamasi yoqilganda tema o‘tishlari o‘chadi */
+@media (prefers-reduced-motion: reduce) {
+  body, .card, .field, .btn, aside, header, footer, .theme-surface { transition: none; }
+}
+
+/* Recharts — tungi rejimda ham o‘qiladigan panellar */
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: var(--card) !important;
+  border-color: var(--line) !important;
+  color: var(--ink) !important;
+  box-shadow: var(--card-shadow);
+}
