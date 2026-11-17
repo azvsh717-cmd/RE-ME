@@ -1,0 +1,1 @@
+export const questions = ["Hozir seni eng ko‘p nima tashvishlantiryapti?", "Bir yildan keyin qayerda bo‘lishni xohlaysan?", "Hozirgi eng katta orzuing nima?", "Hayotingda nimalar senga kuch va quvonch beradi?", "O‘zingga kelajak uchun qanday va’da bermoqchisan?"];
